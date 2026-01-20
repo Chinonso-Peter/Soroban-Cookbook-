@@ -15,11 +15,9 @@ Soroban-Cookbook provides production-ready Rust smart contract patterns for deve
 
 ## 📚 Our Repositories
 
-### [soroban-blueprints](https://github.com/soroban-blueprints/soroban-blueprints)
+### [Soroban-Cookbook](https://github.com/soroban-blueprints/soroban-blueprints)
 The main pattern library with atomic snippets, financial primitives, and advanced multi-contract systems.
 
-### [docs](https://github.com/soroban-blueprints/docs)
-Comprehensive guides, tutorials, and conceptual documentation hosted at [soroban-blueprints.dev](https://soroban-blueprints.dev).
 
 ### [templates](https://github.com/soroban-blueprints/templates)
 Ready-to-fork project starters with CI/CD, testing infrastructure, and deployment scripts pre-configured.
