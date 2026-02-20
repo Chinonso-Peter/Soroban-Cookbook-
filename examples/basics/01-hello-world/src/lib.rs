@@ -43,9 +43,6 @@ mod smoke_tests {
         let name = String::from_str(&env, "World");
         let result = client.hello(&name);
 
-        assert_eq!(
-            result,
-            vec![&env, String::from_str(&env, "Hello"), name]
-        );
+        assert_eq!(result, vec![&env, String::from_str(&env, "Hello"), name]);
     }
 }
