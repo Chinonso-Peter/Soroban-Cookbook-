@@ -81,7 +81,7 @@ Use one naming convention for all event types (`snake_case`, short symbols, dete
 
 ## 📡 Monitoring and Filtering Tips
 
-### Off-chain Consumers Should:
+### Off-chain Consumers Should
 
 - Filter by **topic 0** first (event type)
 - Apply secondary filters by topic position (`topic[1]`, `topic[2]`, ...)
