@@ -4,8 +4,6 @@
     "nonce": 0
   },
   "auth": [
-    [],
-    [],
     []
   ],
   "ledger": {
@@ -89,12 +87,10 @@
                 "bytes": "0000000000000000000000000000000000000000000000000000000000000001"
               },
               {
-                "symbol": "hello"
+                "symbol": "get_current_address"
               }
             ],
-            "data": {
-              "symbol": "Alice"
-            }
+            "data": "void"
           }
         }
       },
@@ -112,109 +108,11 @@
                 "symbol": "fn_return"
               },
               {
-                "symbol": "hello"
+                "symbol": "get_current_address"
               }
             ],
             "data": {
-              "string": "Hello, Alice!"
-            }
-          }
-        }
-      },
-      "failed_call": false
-    },
-    {
-      "event": {
-        "ext": "v0",
-        "contract_id": null,
-        "type_": "diagnostic",
-        "body": {
-          "v0": {
-            "topics": [
-              {
-                "symbol": "fn_call"
-              },
-              {
-                "bytes": "0000000000000000000000000000000000000000000000000000000000000001"
-              },
-              {
-                "symbol": "hello"
-              }
-            ],
-            "data": {
-              "symbol": "Bob"
-            }
-          }
-        }
-      },
-      "failed_call": false
-    },
-    {
-      "event": {
-        "ext": "v0",
-        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
-        "type_": "diagnostic",
-        "body": {
-          "v0": {
-            "topics": [
-              {
-                "symbol": "fn_return"
-              },
-              {
-                "symbol": "hello"
-              }
-            ],
-            "data": {
-              "string": "Hello, Bob!"
-            }
-          }
-        }
-      },
-      "failed_call": false
-    },
-    {
-      "event": {
-        "ext": "v0",
-        "contract_id": null,
-        "type_": "diagnostic",
-        "body": {
-          "v0": {
-            "topics": [
-              {
-                "symbol": "fn_call"
-              },
-              {
-                "bytes": "0000000000000000000000000000000000000000000000000000000000000001"
-              },
-              {
-                "symbol": "hello"
-              }
-            ],
-            "data": {
-              "symbol": "Stellar"
-            }
-          }
-        }
-      },
-      "failed_call": false
-    },
-    {
-      "event": {
-        "ext": "v0",
-        "contract_id": "0000000000000000000000000000000000000000000000000000000000000001",
-        "type_": "diagnostic",
-        "body": {
-          "v0": {
-            "topics": [
-              {
-                "symbol": "fn_return"
-              },
-              {
-                "symbol": "hello"
-              }
-            ],
-            "data": {
-              "string": "Hello, Stellar!"
+              "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD2KM"
             }
           }
         }
