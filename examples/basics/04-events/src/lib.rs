@@ -127,7 +127,10 @@ impl EventsContract {
     pub fn update_config(env: Env, key: Symbol, old_value: u64, new_value: u64) {
         env.events().publish(
             (CONTRACT_NS, symbol_short!("cfg_upd"), key),
-            ConfigUpdateEventData { old_value, new_value },
+            ConfigUpdateEventData {
+                old_value,
+                new_value,
+            },
         );
     }
 
@@ -148,8 +151,7 @@ impl EventsContract {
     /// Emit `count` indexed events – demonstrates a loop emission pattern.
     pub fn emit_multiple(env: Env, count: u32) {
         for i in 0..count {
-            env.events()
-                .publish((symbol_short!("multi"), i), i as u64);
+            env.events().publish((symbol_short!("multi"), i), i as u64);
         }
     }
 }
