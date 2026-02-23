@@ -307,7 +307,10 @@ fn test_emit_transfer_independent_senders_queryable() {
     let (_id1, topics1, _) = events.get(1).unwrap();
     let sender0: Address = Address::try_from_val(&env, &topics0.get(1).unwrap()).unwrap();
     let sender1: Address = Address::try_from_val(&env, &topics1.get(1).unwrap()).unwrap();
-    assert_ne!(sender0, sender1, "Senders must be distinguishable via topic[1]");
+    assert_ne!(
+        sender0, sender1,
+        "Senders must be distinguishable via topic[1]"
+    );
 }
 
 #[test]
@@ -355,7 +358,11 @@ fn test_emit_status_change_four_topics() {
     assert_eq!(events.len(), 1);
 
     let (_id, topics, data) = events.get(0).unwrap();
-    assert_eq!(topics.len(), 4, "Status-change event must use all 4 topic slots");
+    assert_eq!(
+        topics.len(),
+        4,
+        "Status-change event must use all 4 topic slots"
+    );
 
     let t0: Symbol = Symbol::try_from_val(&env, &topics.get(0).unwrap()).unwrap();
     let t1: Symbol = Symbol::try_from_val(&env, &topics.get(1).unwrap()).unwrap();

@@ -86,8 +86,12 @@ impl AuthContract {
 
         // Grant the Admin role to the initializing address so that
         // role-gated functions work immediately after deployment.
-        env.storage().persistent().set(&DataKey::Role(admin.clone()), &Role::Admin);
-        env.storage().persistent().extend_ttl(&DataKey::Role(admin), 100, 100);
+        env.storage()
+            .persistent()
+            .set(&DataKey::Role(admin.clone()), &Role::Admin);
+        env.storage()
+            .persistent()
+            .extend_ttl(&DataKey::Role(admin), 100, 100);
     }
 
     // ==================== ROLE-BASED ACCESS CONTROL ====================
@@ -98,8 +102,12 @@ impl AuthContract {
         admin.require_auth();
         Self::require_admin(&env, &admin);
 
-        env.storage().persistent().set(&DataKey::Role(account.clone()), &role);
-        env.storage().persistent().extend_ttl(&DataKey::Role(account.clone()), 100, 100);
+        env.storage()
+            .persistent()
+            .set(&DataKey::Role(account.clone()), &role);
+        env.storage()
+            .persistent()
+            .extend_ttl(&DataKey::Role(account.clone()), 100, 100);
 
         env.events().publish((symbol_short!("role"),), account);
     }
@@ -109,7 +117,9 @@ impl AuthContract {
         admin.require_auth();
         Self::require_admin(&env, &admin);
 
-        env.storage().persistent().remove(&DataKey::Role(account.clone()));
+        env.storage()
+            .persistent()
+            .remove(&DataKey::Role(account.clone()));
 
         env.events().publish((symbol_short!("revoke"),), account);
     }
@@ -132,7 +142,7 @@ impl AuthContract {
         env.storage()
             .persistent()
             .get::<DataKey, Role>(&DataKey::Role(account))
-            .map_or(false, |r| r == role)
+            == Some(role)
     }
 
     // ==================== ROLE-PROTECTED ACTIONS ====================
@@ -168,10 +178,13 @@ impl AuthContract {
         admin.require_auth();
         Self::require_admin(&env, &admin);
 
-        env.storage().instance().set(&DataKey::TimeLock, &unlock_time);
+        env.storage()
+            .instance()
+            .set(&DataKey::TimeLock, &unlock_time);
         env.storage().instance().extend_ttl(100, 100);
 
-        env.events().publish((symbol_short!("timelock"),), unlock_time);
+        env.events()
+            .publish((symbol_short!("timelock"),), unlock_time);
     }
 
     /// Executes only after the time-lock has expired.
@@ -200,7 +213,9 @@ impl AuthContract {
         admin.require_auth();
         Self::require_admin(&env, &admin);
 
-        env.storage().instance().set(&DataKey::CooldownPeriod, &period);
+        env.storage()
+            .instance()
+            .set(&DataKey::CooldownPeriod, &period);
         env.storage().instance().extend_ttl(100, 100);
 
         env.events().publish((symbol_short!("cooldown"),), period);
@@ -231,8 +246,12 @@ impl AuthContract {
             panic!("Cooldown period not elapsed");
         }
 
-        env.storage().persistent().set(&DataKey::LastAction(caller.clone()), &now);
-        env.storage().persistent().extend_ttl(&DataKey::LastAction(caller), 100, 100);
+        env.storage()
+            .persistent()
+            .set(&DataKey::LastAction(caller.clone()), &now);
+        env.storage()
+            .persistent()
+            .extend_ttl(&DataKey::LastAction(caller), 100, 100);
 
         now
     }
@@ -250,7 +269,8 @@ impl AuthContract {
         env.storage().instance().set(&DataKey::State, &state);
         env.storage().instance().extend_ttl(100, 100);
 
-        env.events().publish((symbol_short!("state"),), state as u32);
+        env.events()
+            .publish((symbol_short!("state"),), state as u32);
     }
 
     /// Returns the current contract state as a `u32`
@@ -299,7 +319,7 @@ impl AuthContract {
             .persistent()
             .get(&DataKey::Role(caller.clone()))
             .unwrap_or_else(|| panic!("No role assigned"));
-        if !allowed.iter().any(|r| *r == role) {
+        if !allowed.contains(&role) {
             panic!("Insufficient role");
         }
     }

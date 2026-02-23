@@ -285,9 +285,14 @@ impl EventsContract {
     ///   • Catch swaps on one pool   → all three topics fixed
     ///
     /// Keep category and action as short Symbols (≤ 9 chars, symbol_short!).
-    pub fn emit_namespaced(env: Env, category: Symbol, action: Symbol, pool_id: Symbol, amount: u64) {
-        env.events()
-            .publish((category, action, pool_id), amount);
+    pub fn emit_namespaced(
+        env: Env,
+        category: Symbol,
+        action: Symbol,
+        pool_id: Symbol,
+        amount: u64,
+    ) {
+        env.events().publish((category, action, pool_id), amount);
     }
 
     /// Emits a status-change event with a 4-topic layout:
@@ -303,8 +308,10 @@ impl EventsContract {
     ///   • Specific old → new transitions for audit trails
     pub fn emit_status_change(env: Env, entity_id: Symbol, old_status: Symbol, new_status: Symbol) {
         let ledger = env.ledger().sequence();
-        env.events()
-            .publish((symbol_short!("status"), entity_id, old_status, new_status), ledger);
+        env.events().publish(
+            (symbol_short!("status"), entity_id, old_status, new_status),
+            ledger,
+        );
     }
 }
 
